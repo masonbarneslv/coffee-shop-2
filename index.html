@@ -4,90 +4,104 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Your Coffee Shop</title>
+
+  <!-- SAME CSS AS MENU -->
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
-  <header class="header">
-    <div class="wrap nav">
-      <a class="brand" href="index.html">YOUR COFFEE SHOP</a>
-      <div class="links">
-        <a href="menu.html">Menu</a>
-        <a href="shop.html">Shop</a>
-        <a href="events.html">Events</a>
-        <a href="locations.html">Locations</a>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="wrap nav">
+    <a class="brand" href="index.html">YOUR COFFEE SHOP</a>
+
+    <div class="links">
+      <a href="menu.html">Menu</a>
+      <a href="locations.html">Locations</a>
+      <a href="contact.html">Contact</a>
+      <a class="btn" href="#">Order Online</a>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="heroText">
+      <h1>Specialty coffee & açaí for better days.</h1>
+      <p>
+        Simple. Clean. Photo-forward.
+        Built for ordering and locations.
+      </p>
+
+      <div class="ctaRow">
+        <a class="btn" href="#">Order Online</a>
+        <a class="btn ghost" href="menu.html">View Menu</a>
       </div>
     </div>
-  </header>
 
-  <main class="wrap">
-    <section class="hero">
-      <div class="heroText">
-        <h1>Specialty coffee & açaí for better days.</h1>
-        <p>Minimal. Bright. Photo-forward. Built for ordering + locations.</p>
-        <div class="ctaRow">
-          <a class="btn" href="locations.html">Order Online</a>
-          <a class="btn ghost" href="menu.html">View Menu</a>
-        </div>
-      </div>
-      <div class="heroImage" role="img" aria-label="Hero image"></div>
-    </section>
+    <div class="heroImage"></div>
+  </section>
 
-    <a class="block" href="shop.html">
-      <img src="images/merch.jpg" alt="Shop merch" />
-      <div class="cap">
-        <h2>Shop Merch</h2>
-        <p>Hats, tees, and essentials.</p>
-      </div>
-    </a>
-
-    <a class="block" href="locations.html">
-      <img src="images/locations.jpg" alt="Locations" />
-      <div class="cap">
-        <h2>Locations</h2>
-        <p>Find hours, addresses, and ordering links.</p>
-      </div>
-    </a>
-
-    <section class="section">
-      <h2>Featured Locations</h2>
-      <div class="grid">
-        <div class="card">
-          <img src="images/location1.jpg" alt="Location one" />
-          <div class="pad">
-            <h3>SUMMERLIN</h3>
-            <p>10595 W Discovery Dr</p>
-            <a class="btn full" href="#">ORDER HERE</a>
-          </div>
-        </div>
-        <div class="card">
-          <img src="images/location2.jpg" alt="Location two" />
-          <div class="pad">
-            <h3>CENTENNIAL</h3>
-            <p>8635 W Rome Blvd</p>
-            <a class="btn full" href="#">ORDER HERE</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="subscribe">
-      <h2>Subscribe</h2>
-      <p>Sign up with your email address to receive news and updates.</p>
-      <form onsubmit="event.preventDefault(); alert('Subscribed! (Connect Mailchimp/Formspree later)');">
-        <input type="email" placeholder="Email Address" required>
-        <button class="btn" type="submit">Sign Up</button>
-      </form>
-      <small>We respect your privacy.</small>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="wrap foot">
-      <div class="muted">© <span id="y"></span> Your Coffee Shop</div>
-      <div class="muted">SITE MAP: Menu • Locations • Shop • Events • Contact</div>
+  <!-- SHOP BLOCK -->
+  <section class="block">
+    <div class="blockText">
+      <h2>Shop Merch</h2>
+      <p>Hats, tees, and essentials.</p>
     </div>
-  </footer>
+  </section>
 
-  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+  <!-- LOCATIONS BLOCK -->
+  <section class="block">
+    <div class="blockText">
+      <h2>Locations</h2>
+      <p>Find hours, addresses, and ordering links.</p>
+    </div>
+  </section>
+
+  <!-- FEATURED LOCATIONS -->
+  <section class="section">
+    <h2>Featured Locations</h2>
+
+    <div class="grid">
+      <div class="card">
+        <div class="cardImage"></div>
+        <div class="pad">
+          <h3>SUMMERLIN</h3>
+          <p>10595 W Discovery Dr</p>
+          <a class="btn full" href="#">ORDER HERE</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="cardImage"></div>
+        <div class="pad">
+          <h3>CENTENNIAL</h3>
+          <p>8635 W Rome Blvd</p>
+          <a class="btn full" href="#">ORDER HERE</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap foot">
+    <div class="muted">© <span id="y"></span> Your Coffee Shop</div>
+    <div class="muted">Menu • Locations • Contact</div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  document.getElementById("y").textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
+
