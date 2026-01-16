@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Menu | Your Coffee Shop</title>
+
+  <!-- Use your main styles.css if you already have it -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Optional: keep menu styles separate -->
+  <link rel="stylesheet" href="menu.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="wrap nav">
+      <a class="brand" href="index.html">YOUR COFFEE SHOP</a>
+      <div class="links">
+        <a href="menu.html" class="active">Menu</a>
+        <a href="locations.html">Locations</a>
+        <a href="contact.html">Contact</a>
+        <a class="btn" href="#" target="_blank" rel="noreferrer">Order Online</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="menu-hero">
+      <div class="menu-hero-left">
+        <h1>Menu</h1>
+        <p>Simple, clean, and built for ordering. Prices and items can be updated anytime.</p>
+
+        <div class="menu-hero-cta">
+          <a class="btn" href="#" target="_blank" rel="noreferrer">Order Online</a>
+          <a class="btn ghost" href="#signature">Signature Picks</a>
+        </div>
+      </div>
+
+      <!-- Optional photo block -->
+      <div class="menu-hero-image" role="img" aria-label="Menu image"></div>
+    </section>
+
+    <!-- Optional: If you want a “menu poster image” like some cafes -->
+    <section class="menu-poster">
+      <div class="poster">
+        <!-- Upload your own image as images/menu.jpg -->
+        <img src="images/menu.jpg" alt="Menu board" />
+        <div class="poster-cap">
+          <strong>Prefer a quick view?</strong>
+          <span>Tap to zoom on mobile.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="signature" id="signature">
+      <h2>Signature Picks</h2>
+      <div class="sig-grid">
+        <div class="sig-card">
+          <img src="images/latte.jpg" alt="Latte" />
+          <div class="pad">
+            <h3>Vanilla Cream Latte</h3>
+            <p>Espresso, vanilla, silky milk, soft sweetness.</p>
+            <div class="row">
+              <span class="tag">espresso</span>
+              <span class="price">$5.75</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sig-card">
+          <img src="images/coldbrew.jpg" alt="Cold brew" />
+          <div class="pad">
+            <h3>Vanilla Cream Cold Brew</h3>
+            <p>12-hour steep, smooth finish, house cream topper.</p>
+            <div class="row">
+              <span class="tag">cold</span>
+              <span class="price">$5.75</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sig-card">
+          <img src="images/acai.jpg" alt="Acai bowl" />
+          <div class="pad">
+            <h3>Classic Açaí Bowl</h3>
+            <p>Açaí, granola, banana, strawberry, honey.</p>
+            <div class="row">
+              <span class="tag">bowls</span>
+              <span class="price">$9.75</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="menu-layout">
+      <aside class="menu-side">
+        <div class="side-card">
+          <h3>Make it yours</h3>
+          <p class="muted">Milk options + add-ons listed below. Ask about seasonal flavors.</p>
+          <div class="side-list">
+            <div class="side-row"><span>Milk</span><span>Whole / Oat / Almond (+$0.75)</span></div>
+            <div class="side-row"><span>Extra shot</span><span>$1.25</span></div>
+            <div class="side-row"><span>Flavor</span><span>$0.75</span></div>
+            <div class="side-row"><span>Protein boost</span><span>$2.00</span></div>
+          </div>
+          <a class="btn full" href="#" target="_blank" rel="noreferrer">Order Online</a>
+        </div>
+
+        <div class="side-card">
+          <h3>Hours</h3>
+          <div class="side-list">
+            <div class="side-row"><span>Mon–Fri</span><span>6:30am–4:00pm</span></div>
+            <div class="side-row"><span>Sat–Sun</span><span>7:00am–3:00pm</span></div>
+          </div>
+        </div>
+      </aside>
+
+      <div class="menu-main">
+        <!-- ESPRESSO -->
+        <div class="menu-group">
+          <h2>Espresso Bar</h2>
+          <ul class="menu-list">
+            <li><span>Espresso</span><span>$3.25</span></li>
+            <li><span>Americano</span><span>$3.75</span></li>
+            <li><span>Cortado</span><span>$4.25</span></li>
+            <li><span>Cappuccino</span><span>$4.75</span></li>
+            <li><span>Latte</span><span>$5.25</span></li>
+            <li><span>Mocha</span><span>$6.00</span></li>
+            <li><span>White Mocha</span><span>$6.25</span></li>
+          </ul>
+          <p class="note">Seasonal flavors available (ask in-store).</p>
+        </div>
+
+        <!-- BREWED -->
+        <div class="menu-group">
+          <h2>Brewed Coffee</h2>
+          <ul class="menu-list">
+            <li><span>Drip Coffee</span><span>$3.00</span></li>
+            <li><span>Pour Over</span><span>$5.75</span></li>
+          </ul>
+        </div>
+
+        <!-- COLD -->
+        <div class="menu-group">
+          <h2>Cold</h2>
+          <ul class="menu-list">
+            <li><span>Cold Brew</span><span>$4.75</span></li>
+            <li><span>Vanilla Cream Cold Brew</span><span>$5.75</span></li>
+            <li><span>Iced Latte</span><span>$5.50</span></li>
+            <li><span>Iced Mocha</span><span>$6.25</span></li>
+          </ul>
+        </div>
+
+        <!-- TEA -->
+        <div class="menu-group">
+          <h2>Tea & Non-Coffee</h2>
+          <ul class="menu-list">
+            <li><span>Chai Latte</span><span>$5.50</span></li>
+            <li><span>Matcha Latte</span><span>$5.75</span></li>
+            <li><span>London Fog</span><span>$5.75</span></li>
+            <li><span>Hot Tea</span><span>$3.50</span></li>
+          </ul>
+        </div>
+
+        <!-- BOWLS -->
+        <div class="menu-group">
+          <h2>Açaí & Bowls</h2>
+          <ul class="menu-list">
+            <li><span>Classic Açaí Bowl</span><span>$9.75</span></li>
+            <li><span>Protein Bowl</span><span>$10.75</span></li>
+            <li><span>Island Bowl</span><span>$11.25</span></li>
+          </ul>
+          <p class="note">Toppings: granola, banana, strawberry, coconut, honey.</p>
+        </div>
+
+        <!-- FOOD -->
+        <div class="menu-group">
+          <h2>Pastries & Food</h2>
+          <ul class="menu-list">
+            <li><span>Butter Croissant</span><span>$4.25</span></li>
+            <li><span>Chocolate Croissant</span><span>$4.75</span></li>
+            <li><span>Blueberry Muffin</span><span>$4.50</span></li>
+            <li><span>Avocado Toast</span><span>$7.95</span></li>
+            <li><span>Breakfast Burrito</span><span>$8.95</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="menu-footer-cta">
+      <div class="cta-box">
+        <h2>Ready to order?</h2>
+        <p class="muted">Link this button to Uber Eats / DoorDash / Toast / Square.</p>
+        <a class="btn" href="#" target="_blank" rel="noreferrer">Order Online</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap foot">
+      <div class="muted">© <span id="y"></span> Your Coffee Shop</div>
+      <div class="muted">Menu • Locations • Contact</div>
+    </div>
+  </footer>
+
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</body>
+</html>
