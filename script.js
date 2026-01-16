@@ -1,93 +1,144 @@
-/* ============================
-   ACTIVE NAV LINK
-   ============================ */
-(function () {
-  const current =
-    window.location.pathname.split("/").pop() || "index.html";
+/* =========================================
+   script.js (UPDATED)
+   Works with .links OR <nav>, GitHub Pages safe
+   ========================================= */
 
-  document.querySelectorAll("nav a").forEach((link) => {
-    const href = link.getAttribute("href");
-    if (href === current) {
-      link.classList.add("active");
+document.addEventListener("DOMContentLoaded", () => {
+  /* -----------------------------
+     1) ACTIVE NAV LINK (robust)
+     ----------------------------- */
+  const currentFile = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
+
+  // Works for either <nav a> or your ".links a"
+  const navLinks = document.querySelectorAll("nav a, .links a");
+
+  navLinks.forEach((a) => {
+    const href = (a.getAttribute("href") || "").split("#")[0].toLowerCase();
+    if (!href) return;
+    if (href === currentFile) a.classList.add("active");
+  });
+
+  /* ---------------------------------------
+     2) SMOOTH SCROLL (sticky header offset)
+     --------------------------------------- */
+  const header = document.querySelector(".header, header");
+  const headerOffset = header ? header.offsetHeight + 10 : 0;
+
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", (e) => {
+      const id = anchor.getAttribute("href");
+      if (!id || id === "#") return;
+
+      const target = document.querySelector(id);
+      if (!target) return;
+
+      e.preventDefault();
+
+      const y = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    });
+  });
+
+  /* ---------------------------------------
+     3) MENU FILTERING (optional)
+     Supports:
+       - Buttons: [data-filter="espresso"]
+       - Items:   [data-menu-item data-category="espresso"]
+     Also supports a <select data-menu-filter>
+     --------------------------------------- */
+  const menuItems = Array.from(document.querySelectorAll("[data-menu-item]"));
+  const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
+  const filterSelect = document.querySelector("[data-menu-filter]"); // optional
+
+  function applyFilter(category) {
+    const cat = (category || "all").toLowerCase();
+
+    menuItems.forEach((item) => {
+      const itemCat = (item.dataset.category || "").toLowerCase();
+      const show = cat === "all" || itemCat === cat;
+      item.style.display = show ? "" : "none";
+    });
+  }
+
+  if (menuItems.length) {
+    // Buttons
+    if (filterButtons.length) {
+      filterButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const cat = btn.dataset.filter || "all";
+          filterButtons.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          applyFilter(cat);
+
+          // Keep select in sync if it exists
+          if (filterSelect) filterSelect.value = cat;
+        });
+      });
+    }
+
+    // Select dropdown
+    if (filterSelect) {
+      filterSelect.addEventListener("change", () => applyFilter(filterSelect.value));
+    }
+  }
+
+  /* ---------------------------------------
+     4) SUBSCRIBE FORM (GitHub Pages safe)
+     Use: <form data-subscribe>...</form>
+     --------------------------------------- */
+  const subscribeForm = document.querySelector("[data-subscribe]");
+  if (subscribeForm) {
+    subscribeForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = subscribeForm.querySelector("input[type='email']")?.value?.trim();
+      if (!email) return alert("Please enter an email address.");
+      alert("Thanks for subscribing! 🚀");
+      subscribeForm.reset();
+    });
+  }
+
+  /* ---------------------------------------
+     5) IMAGE FADE-IN (handles cached images)
+     --------------------------------------- */
+  const imgs = document.querySelectorAll("img");
+  imgs.forEach((img) => {
+    // Only apply if it's not already styled
+    img.style.opacity = "0";
+    img.style.transition = "opacity .35s ease";
+
+    const reveal = () => (img.style.opacity = "1");
+
+    // If cached and already complete, show immediately
+    if (img.complete && img.naturalWidth > 0) {
+      reveal();
+    } else {
+      img.addEventListener("load", reveal, { once: true });
+      img.addEventListener("error", () => {
+        // If an image fails, don't leave an empty invisible box
+        img.style.opacity = "1";
+      }, { once: true });
     }
   });
-})();
 
-/* ============================
-   SMOOTH SCROLL FOR ANCHORS
-   ============================ */
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    const target = document.querySelector(this.getAttribute("href"));
-    if (!target) return;
+  /* ---------------------------------------
+     6) FOOTER YEAR
+     Needs: <span id="y"></span>
+     --------------------------------------- */
+  const yearEl = document.getElementById("y");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-    e.preventDefault();
-    target.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
+  /* ---------------------------------------
+     7) OPTIONAL MOBILE MENU TOGGLE
+     If you add:
+       <button class="menuToggle" data-menu-toggle>Menu</button>
+       <div class="links" data-menu-links>...</div>
+     --------------------------------------- */
+  const toggle = document.querySelector("[data-menu-toggle]");
+  const links = document.querySelector("[data-menu-links]") || document.querySelector(".links");
+
+  if (toggle && links) {
+    toggle.addEventListener("click", () => {
+      links.classList.toggle("open");
     });
-  });
+  }
 });
-
-/* ============================
-   MENU FILTERING (OPTIONAL)
-   Add data-category="espresso"
-   ============================ */
-const filterButtons = document.querySelectorAll("[data-filter]");
-const menuItems = document.querySelectorAll("[data-menu-item]");
-
-if (filterButtons.length && menuItems.length) {
-  filterButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const category = btn.dataset.filter;
-
-      filterButtons.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      menuItems.forEach((item) => {
-        if (category === "all" || item.dataset.category === category) {
-          item.style.display = "block";
-        } else {
-          item.style.display = "none";
-        }
-      });
-    });
-  });
-}
-
-/* ============================
-   NEWSLETTER / SUBSCRIBE FORM
-   GitHub Pages–safe
-   ============================ */
-const subscribeForm = document.querySelector("[data-subscribe]");
-
-if (subscribeForm) {
-  subscribeForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const emailInput = this.querySelector("input[type='email']");
-    if (!emailInput.value) return;
-
-    alert("Thanks for subscribing! 🚀");
-    this.reset();
-  });
-}
-
-/* ============================
-   IMAGE LOADED FADE-IN
-   ============================ */
-document.querySelectorAll("img").forEach((img) => {
-  img.style.opacity = 0;
-  img.addEventListener("load", () => {
-    img.style.transition = "opacity .4s ease";
-    img.style.opacity = 1;
-  });
-});
-
-/* ============================
-   FOOTER YEAR
-   ============================ */
-const yearEl = document.getElementById("y");
-if (yearEl) {
-  yearEl.textContent = new Date().getFullYear();
-}
